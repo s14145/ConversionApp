@@ -32,9 +32,17 @@ import java.awt.event.MouseEvent;
 public class ConversionMain {
 
 	private JFrame frame;
+	
+	// First Textbox
 	private JTextField textField;
+	
+	// Second Textbox1
 	private JTextField textField_1;
+	
+	// Button
 	private JButton btnNewButton;
+	
+	// Label
 	private JLabel lblFromTo;
 
 	/**
@@ -69,6 +77,13 @@ public class ConversionMain {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		textField = new JTextField();
+		
+		/**
+		 * 
+		 * MouseListener applied on TextBox - Method that makes both TextBoxes empty when user perform mouse click action on TextBox
+		 * 
+		 * @param void
+		 */
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -80,7 +95,12 @@ public class ConversionMain {
 		
 		textField.setColumns(10);
 		
-		
+		/**
+		 * 
+		 * MouseListener applied on TextBox1 - Method that makes both TextBoxes empty when user perform mouse click action on TextBox1
+		 * 
+		 * @param void
+		 */
 	    
 		textField_1 = new JTextField();
 		textField_1.addMouseListener(new MouseAdapter() {
@@ -95,6 +115,14 @@ public class ConversionMain {
 		
 		btnNewButton = new JButton("Miles - Km");
 		btnNewButton.addActionListener(new ActionListener() {
+			
+			/**
+			 * 
+			 * Checking TextBoxes are empty and perform metric conversion from/to Miles-Km
+			 * 
+			 * @param void
+			 */
+			
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
@@ -117,6 +145,13 @@ public class ConversionMain {
 		
 		JButton btnLbsKg = new JButton("Lbs / Kg");
 		btnLbsKg.addActionListener(new ActionListener() {
+			
+			/**
+			 * 
+			 * Checking TextBoxes are empty and perform metric conversion from/to Lbs-Kg.
+			 * 
+			 * @param void
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
@@ -136,7 +171,15 @@ public class ConversionMain {
 		
 		JButton btnFtMeters = new JButton("Ft / Meters");
 		btnFtMeters.addActionListener(new ActionListener() {
+			
+			/**
+			 * 
+			 * Checking TextBoxes are empty and perform metric conversion from/to Ft-Meters.
+			 * 
+			 * @param void
+			 */
 			public void actionPerformed(ActionEvent e) {
+				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
@@ -154,6 +197,13 @@ public class ConversionMain {
 		
 		JButton btnInCm = new JButton("In / Cm");
 		btnInCm.addActionListener(new ActionListener() {
+			
+			/**
+			 * 
+			 * Checking TextBoxes are empty and perform metric conversion from/to In-Cm.
+			 * 
+			 * @param void
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
@@ -172,18 +222,25 @@ public class ConversionMain {
 		
 		JButton btnDegree = new JButton("Degree Celsius / Degree Farenheit");
 		btnDegree.addActionListener(new ActionListener() {
+			
+			/**
+			 * 
+			 * Checking TextBoxes are empty and perform metric conversion from/to Degree Celcius- Degree Farenheight.
+			 * 
+			 * @param void
+			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
-					double a1=Double.parseDouble(textField.getText())*33.8;
-					String value=String.format("%.2f",a1);
-					textField_1.setText(value+" °F");
+					double tVal1=Double.parseDouble(textField.getText());
+					float fVal1=(float)((tVal1 * 9)/5)+32;
+					textField_1.setText(String.valueOf(fVal1)+" °F");
 				}else if(!textField_1.getText().isEmpty()) {
-					double a2=Double.parseDouble(textField_1.getText())*(-17.2222);
-					String value=String.format("%.2f",a2);
-					textField.setText(value+" °C");
+					double tVal2=Double.parseDouble(textField_1.getText());
+					float fVal2=(float)((tVal2 - 32)*5)/9;
+					textField.setText(String.valueOf(fVal2)+" °C");
 				}
 			}
 		});
@@ -193,6 +250,10 @@ public class ConversionMain {
 		lblFromTo = new JLabel("From / To (Only Digit/s):");
 		
 		JLabel lblFromTo_1 = new JLabel("From / To (Only Digit/s):");
+		
+		
+		// Applying layout that will autosize graphical control element (such as Button, Label,Textbox,etc.)
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
