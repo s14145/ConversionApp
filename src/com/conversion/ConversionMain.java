@@ -28,6 +28,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ConversionMain {
 
@@ -76,13 +78,36 @@ public class ConversionMain {
 		frame.setBounds(200,400, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// Label for showing error when user enters invalid input in TextBox
+		JLabel show_validation_here_1 = new JLabel("");
+		show_validation_here_1.setForeground(Color.RED);
+				
+				// Label for showing error when user enters invalid input in TextBox1
+		JLabel show_validation_here_2 = new JLabel("");
+		show_validation_here_2.setForeground(Color.RED);
+		
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)) {
+					show_validation_here_1.setText("Invalid input. Number Only");
+				}else if(textField.getText().isEmpty()) {
+					show_validation_here_1.setText("");
+				}
+			}
+		});
+		
+			
+	
 		
 		/**
 		 * 
 		 * MouseListener applied on TextBox - Method that makes both TextBoxes empty when user perform mouse click action on TextBox
 		 * 
-		 * @param void
+		 * @param
+		 * @return void
 		 */
 		textField.addMouseListener(new MouseAdapter() {
 			@Override
@@ -99,15 +124,31 @@ public class ConversionMain {
 		 * 
 		 * MouseListener applied on TextBox1 - Method that makes both TextBoxes empty when user perform mouse click action on TextBox1
 		 * 
-		 * @param void
+		 * @param 
+		 * @return void
 		 */
 	    
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c=e.getKeyChar();
+				if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE)) {
+					show_validation_here_2.setText("Invalid input. Number Only");
+				}else if(textField.getText().isEmpty()) {
+					show_validation_here_2.setText("");
+				}
+				
+			}
+		});
+		
 		textField_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textField.setText("");
 				textField_1.setText("");
+				show_validation_here_1.setText("");
+				show_validation_here_2.setText("");
 				
 			}
 		});
@@ -120,13 +161,15 @@ public class ConversionMain {
 			 * 
 			 * Checking TextBoxes are empty and perform metric conversion from/to Miles-Km
 			 * 
-			 * @param void
+			 * @param
+			 * @return void
 			 */
 			
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","TextBox Empty Error",JOptionPane.INFORMATION_MESSAGE);
+					
 				}else if(!textField.getText().isEmpty()) {
 					double a1=Double.parseDouble(textField.getText())*1.60934;
 					String value=String.format("%.2f",a1);
@@ -150,12 +193,13 @@ public class ConversionMain {
 			 * 
 			 * Checking TextBoxes are empty and perform metric conversion from/to Lbs-Kg.
 			 * 
-			 * @param void
+			 * @param
+			 * @return void
 			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","TextBox Empty Error",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
 					double a1=Double.parseDouble(textField.getText())*0.453592;
 					String value=String.format("%.2f",a1);
@@ -165,7 +209,6 @@ public class ConversionMain {
 					String value=String.format("%.2f",a2);
 					textField.setText(value+" Lbs");
 				}
-				
 			}
 		});
 		
@@ -176,12 +219,13 @@ public class ConversionMain {
 			 * 
 			 * Checking TextBoxes are empty and perform metric conversion from/to Ft-Meters.
 			 * 
-			 * @param void
+			 * @param
+			 * @return void
 			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","TextBox Empty Error",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
 					double a1=Double.parseDouble(textField.getText())*0.3048;
 					String value=String.format("%.2f",a1);
@@ -202,12 +246,13 @@ public class ConversionMain {
 			 * 
 			 * Checking TextBoxes are empty and perform metric conversion from/to In-Cm.
 			 * 
-			 * @param void
+			 * @param
+			 * @return void
 			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","TextBox Empty Error",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
 					double a1=Double.parseDouble(textField.getText())*2.54;
 					String value=String.format("%.2f",a1);
@@ -227,12 +272,13 @@ public class ConversionMain {
 			 * 
 			 * Checking TextBoxes are empty and perform metric conversion from/to Degree Celcius- Degree Farenheight.
 			 * 
-			 * @param void
+			 * @param 
+			 * @return void
 			 */
 			public void actionPerformed(ActionEvent e) {
 				
 				if ((textField.getText().equals("")) && textField_1.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","DST System",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"You must enter unit (digit/s only) in one of the textfields.","TextBox Empty Error",JOptionPane.INFORMATION_MESSAGE);
 				}else if(!textField.getText().isEmpty()) {
 					double tVal1=Double.parseDouble(textField.getText());
 					float fVal1=(float)((tVal1 * 9)/5)+32;
@@ -252,6 +298,8 @@ public class ConversionMain {
 		JLabel lblFromTo_1 = new JLabel("From / To (Only Digit/s):");
 		
 		
+		
+		
 		// Applying layout that will autosize graphical control element (such as Button, Label,Textbox,etc.)
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -261,11 +309,11 @@ public class ConversionMain {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(112)
-							.addComponent(lblConvesionApplication, GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+							.addComponent(lblConvesionApplication, GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(26)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(btnDegree, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+								.addComponent(btnDegree, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
@@ -274,12 +322,18 @@ public class ConversionMain {
 										.addComponent(btnFtMeters, GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
 									.addGap(104)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblFromTo_1, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(6)
+											.addComponent(show_validation_here_2))
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+											.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+											.addGroup(groupLayout.createSequentialGroup()
+												.addGap(6)
+												.addComponent(show_validation_here_1))
+											.addComponent(lblFromTo_1, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
 											.addComponent(lblFromTo)
-											.addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-											.addComponent(textField, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-											.addComponent(lblEnterUnit)))))
+											.addComponent(lblEnterUnit)
+											.addComponent(textField, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))))
 							.addGap(88)))
 					.addGap(51))
 		);
@@ -291,26 +345,32 @@ public class ConversionMain {
 					.addGap(13)
 					.addComponent(lblEnterUnit)
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblFromTo)
-						.addComponent(btnNewButton))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNewButton)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnLbsKg))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblFromTo)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(show_validation_here_1)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnLbsKg))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblFromTo_1)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(show_validation_here_2))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnFtMeters)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnInCm)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnDegree, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(32))
+					.addGap(31))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
