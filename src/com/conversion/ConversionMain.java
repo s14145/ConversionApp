@@ -87,6 +87,13 @@ public class ConversionMain {
 		show_validation_here_2.setForeground(Color.RED);
 		
 		textField = new JTextField();
+		
+		/**
+		 *  Validate TextBox (textField) input is number only. Hide Error message if TextBox (textField) is empty.
+		 *
+		 * @param
+		 * @return void
+		 */
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -129,6 +136,13 @@ public class ConversionMain {
 		 */
 	    
 		textField_1 = new JTextField();
+		
+		/**
+		 *  Validate TextBox1 (textField1) input is number only. Hide Error message if TextBox1 (textField1) is empty.
+		 *
+		 * @param
+		 * @return void
+		 */
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
