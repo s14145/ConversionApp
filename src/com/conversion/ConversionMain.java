@@ -98,7 +98,7 @@ public class ConversionMain {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c=e.getKeyChar();
-				if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE || textField.getText().contains("-")) && textField.getText().indexOf('.') != -1) {
+				if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE || c == 46 || c == 45)) {
 					show_validation_here_1.setText("Invalid input. Number Only");
 				}else if(textField.getText().isEmpty()) {
 					show_validation_here_1.setText("");
@@ -121,6 +121,8 @@ public class ConversionMain {
 			public void mouseClicked(MouseEvent e) {
 				textField.setText("");
 				textField_1.setText("");
+				show_validation_here_1.setText("");
+				show_validation_here_2.setText("");
 				
 			}
 		});
@@ -147,12 +149,12 @@ public class ConversionMain {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c=e.getKeyChar();
-				if(!(Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE || textField_1.getText().contains("-")) && textField_1.getText().indexOf('.') != -1) {
+				if(!(Character.isDigit(c)|| (c==KeyEvent.VK_BACK_SPACE)|| c==KeyEvent.VK_DELETE || c == 46 || c == 45)) {
 					show_validation_here_2.setText("Invalid input. Number Only");
 				}else if(textField.getText().isEmpty()) {
 					show_validation_here_2.setText("");
 				}
-				
+				//textField_1.getText().contains("-")) && textField_1.getText().indexOf('.') != -1)
 			}
 		});
 		
